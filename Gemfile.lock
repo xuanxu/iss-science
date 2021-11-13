@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 37c46e859bc53175dba913e61b60042aee216ab1
+  revision: 5a4a316246124797b1cf55b2958a388d177eb3cd
   branch: main
   specs:
     actioncable (7.0.0.alpha2)
@@ -92,8 +92,9 @@ GEM
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
-    capybara (3.35.3)
+    capybara (3.36.0)
       addressable
+      matrix
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
@@ -103,15 +104,15 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    debug (1.3.1)
+    debug (1.3.4)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
     erubi (1.10.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    importmap-rails (0.8.1)
+    importmap-rails (0.8.2)
       rails (>= 6.0.0)
     io-console (0.5.9)
     irb (1.3.7)
@@ -124,6 +125,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.14.4)
@@ -157,12 +159,12 @@ GEM
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.2.2)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
+    sprockets-rails (3.3.0)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
-    stimulus-rails (0.7.1)
+    stimulus-rails (0.7.2)
       rails (>= 6.0.0)
     thor (1.1.0)
     turbo-rails (7.1.1)
