@@ -13,6 +13,7 @@ jobs:
         env:
           RAILS_ENV: test
         run: |
+          bundle install
           bundle exec rails db:create
           bundle exec rails db:schema:load
           bundle exec rails test
