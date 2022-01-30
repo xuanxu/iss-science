@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_183111) do
+ActiveRecord::Schema.define(version: 2022_01_30_192531) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "experiments", force: :cascade do |t|
     t.string "short_name", null: false
@@ -18,8 +24,6 @@ ActiveRecord::Schema.define(version: 2022_01_29_183111) do
     t.text "principal_investigators_raw"
     t.text "developers_raw"
     t.string "expeditions_raw"
-    t.string "category"
-    t.string "sponsoring_space_agency"
     t.boolean "required_sample_return"
     t.integer "sample_return_times", default: 0
     t.boolean "crew_involvement"
@@ -29,6 +33,16 @@ ActiveRecord::Schema.define(version: 2022_01_29_183111) do
     t.boolean "completed_successfully"
     t.string "hardware_required"
     t.text "hardware_required_details"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id"
+    t.integer "space_agency_id"
+    t.index ["category_id"], name: "index_experiments_on_category_id"
+    t.index ["space_agency_id"], name: "index_experiments_on_space_agency_id"
+  end
+
+  create_table "space_agencies", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
