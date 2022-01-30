@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+nasa:
+  name: National Aeronautics and Space Administration (NASA)
 
-two:
-  name: MyString
+esa:
+  name: European Space Agency (ESA)

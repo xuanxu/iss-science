@@ -1,5 +1,5 @@
 class ExperimentsController < ApplicationController
-  before_action :set_experiment, only: %i[ show edit update destroy ]
+  before_action :set_experiment, only: %i[ show update ]
 
   # GET /experiments or /experiments.json
   def index
@@ -17,7 +17,7 @@ class ExperimentsController < ApplicationController
         format.html { redirect_to experiment_url(@experiment), notice: "Experiment was successfully updated." }
         format.json { render :show, status: :ok, location: @experiment }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
         format.json { render json: @experiment.errors, status: :unprocessable_entity }
       end
     end
