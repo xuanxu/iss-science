@@ -16,7 +16,7 @@ namespace :iss do
         pis = pis.uniq.compact
         all_pis = []
         pis.each do |pi|
-          pi_list = pi.split(";").map(&:strip)
+          pi_list = pi.gsub("\n", "").split(";").map(&:strip)
           all_pis << pi_list
         end
 
@@ -41,7 +41,7 @@ namespace :iss do
         devs = devs.uniq.compact
         all_devs = []
         devs.each do |dev|
-          dev_list = dev.split(";").map(&:strip)
+          dev_list = dev.gsub("\n", "").split(";").map(&:strip)
           all_devs << dev_list
         end
 
@@ -66,7 +66,7 @@ namespace :iss do
         expeditions = expeditions.uniq.compact
         all_expeditions = []
         expeditions.each do |exp|
-          expeditions_list = exp.split(";").map(&:strip)
+          expeditions_list = exp.gsub("\n", "").split(",").map(&:strip)
           all_expeditions << expeditions_list
         end
 
@@ -145,9 +145,9 @@ namespace :iss do
                                 e.space_agency = space_agency || no_space_agency
         end
 
-        exp.principal_investigators = PrincipalInvestigator.where(name: principal_investigators_raw.split(";").map(&:strip))
-        exp.developers = Developer.where(name: developers_raw.split(";").map(&:strip))
-        exp.expeditions = Expedition.where(name: expeditions_raw.split(";").map(&:strip))
+        exp.principal_investigators = PrincipalInvestigator.where(name: principal_investigators_raw.gsub("\n", "").split(";").map(&:strip))
+        exp.developers = Developer.where(name: developers_raw.gsub("\n", "").split(";").map(&:strip))
+        exp.expeditions = Expedition.where(name: expeditions_raw.gsub("\n", "").split(",").map(&:strip))
         exp.save!
       end
       experiment_final_count = Experiment.count
