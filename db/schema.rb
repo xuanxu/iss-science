@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_192531) do
+ActiveRecord::Schema.define(version: 2022_02_03_123113) do
 
   create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories_experiments", id: false, force: :cascade do |t|
+    t.integer "experiment_id", null: false
+    t.integer "category_id", null: false
+  end
+
+  create_table "developers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "developers_experiments", id: false, force: :cascade do |t|
+    t.integer "experiment_id", null: false
+    t.integer "developer_id", null: false
+  end
+
+  create_table "expeditions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -39,6 +61,17 @@ ActiveRecord::Schema.define(version: 2022_01_30_192531) do
     t.integer "space_agency_id"
     t.index ["category_id"], name: "index_experiments_on_category_id"
     t.index ["space_agency_id"], name: "index_experiments_on_space_agency_id"
+  end
+
+  create_table "experiments_principal_investigators", id: false, force: :cascade do |t|
+    t.integer "experiment_id", null: false
+    t.integer "principal_investigator_id", null: false
+  end
+
+  create_table "principal_investigators", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "space_agencies", force: :cascade do |t|
