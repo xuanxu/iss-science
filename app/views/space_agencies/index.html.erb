@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Space Agencies</h1>
+
+<div id="space_agencies">
+  <table>
+    <tr><th>Space agency</th></tr>
+    <% @space_agencies.each do |agency| %>
+      <tr><td><%= link_to agency.name, agency %></td></tr>
+    <% end %>
+  </table>
+</div>

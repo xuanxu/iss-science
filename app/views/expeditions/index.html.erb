@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Expeditions</h1>
+
+<div id="expeditions">
+  <table>
+    <tr><th>Expedition</th></tr>
+    <% @expeditions.each do |exp| %>
+      <tr><td><%= link_to exp.name, exp %></td></tr>
+    <% end %>
+  </table>
+</div>

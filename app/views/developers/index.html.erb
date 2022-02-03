@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Developers</h1>
+
+<p>
+<%= link_to "All", developers_path %>
+<% Developer.initials.each do |letter| %>
+  <% if params[:by_initial].present? && params[:by_initial].upcase == letter %>
+    <strong><%= letter %></strong>
+  <% else %>
+    <%= link_to letter, developers_path(by_initial: letter) %>
+  <% end %>
+<% end %>
+</p>
+
+<h3><%= pluralize @developers.size, "Developer" %>: </h3>
+
+<div id="developers">
+  <% @developers.each do |dev| %>
+    <div id="<%= dom_id dev %>">
+      <p><%= link_to dev.name, dev %></p>
+    </div>
+  <% end %>
+</div>

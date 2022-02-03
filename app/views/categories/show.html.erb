@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to Categories list", categories_path %>
+
+<h2><%= @category.name %></h2>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @category.experiments.size, "experiment" %> classified under <i><%= @category.name %></i></th></tr>
+    <% @category.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.short_name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

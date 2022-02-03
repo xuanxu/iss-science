@@ -3,7 +3,11 @@ class ExperimentsController < ApplicationController
 
   # GET /experiments or /experiments.json
   def index
-    @experiments = Experiment.all
+    if params[:by_initial].present?
+      @experiments = Experiment.by_initial(params[:by_initial])
+    else
+      @experiments = Experiment.all
+    end
   end
 
   # GET /experiments/1 or /experiments/1.json
@@ -26,7 +30,7 @@ class ExperimentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_experiment
-      @experiment = Experiment.find(params[:id])
+      @experiment = Experiment.complete.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

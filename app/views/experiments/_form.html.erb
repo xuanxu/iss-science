@@ -12,6 +12,31 @@
   <% end %>
 
   <div>
+    <%= form.label :short_name, style: "display: block" %>
+    <%= form.text_field :short_name %>
+  </div>
+
+  <div>
+    <%= form.label :full_name, style: "display: block" %>
+    <%= form.text_area :full_name %>
+  </div>
+
+  <div>
+    <%= form.label :completed_successfully, style: "display: block" %>
+    <%= form.check_box :completed_successfully %>
+  </div>
+
+  <div>
+    <%= form.label :sample_return_times, style: "display: block" %>
+    <%= form.number_field :sample_return_times %>
+  </div>
+
+  <div>
+    <%= form.label :category_id, style: "display: block" %>
+    <%= form.text_field :category_id %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

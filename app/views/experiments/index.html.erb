@@ -2,13 +2,23 @@
 
 <h1>Experiments</h1>
 
+<p>
+<%= link_to "All", experiments_path %>
+<% Experiment.initials.each do |letter| %>
+  <% if params[:by_initial].present? && params[:by_initial].upcase == letter %>
+    <strong><%= letter %></strong>
+  <% else %>
+    <%= link_to letter, experiments_path(by_initial: letter) %>
+  <% end %>
+<% end %>
+</p>
+
+<h3><%= pluralize @experiments.size, "experiment" %>: </h3>
+
 <div id="experiments">
   <% @experiments.each do |experiment| %>
-    <%= render experiment %>
-    <p>
-      <%= link_to "Show this experiment", experiment %>
-    </p>
+    <div id="<%= dom_id experiment %>">
+      <p><%= link_to experiment.short_name, experiment %></p>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New experiment", new_experiment_path %>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to Expeditions list", expeditions_path %>
+
+<h2><%= @expedition.name %></h2>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @expedition.experiments.size, "experiment" %> during expedition <%= @expedition.name %></th></tr>
+    <% @expedition.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.short_name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

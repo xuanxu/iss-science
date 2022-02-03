@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :experiments
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :experiments, only: [:index, :show, :edit, :update]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :principal_investigators, only: [:index, :show]
+  resources :developers, only: [:index, :show]
+  resources :expeditions, only: [:index, :show]
+  resources :categories, only: [:index, :show]
+  resources :space_agencies, only: [:index, :show]
+
+  root "experiments#index"
 end

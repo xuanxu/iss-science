@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to Space Agencies list", space_agencies_path %>
+
+<h2><%= @space_agency.name %></h2>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @space_agency.experiments.size, "experiment" %> sponsored by <i><%= @space_agency.name %></i></th></tr>
+    <% @space_agency.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.short_name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

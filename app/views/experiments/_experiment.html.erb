@@ -1,2 +1,31 @@
-<div id="<%= dom_id experiment %>">
-</div>
+<h2><%= experiment.short_name %></h2>
+
+<p><%= experiment.full_name %></p>
+
+<p><strong>Category:</strong> <%= link_to experiment.category.name, category_path(experiment.category)%></p>
+<p><strong>Sponsoring Space Agency:</strong> <%= link_to experiment.space_agency.name, space_agency_path(experiment.space_agency) %></p>
+<p>
+  <strong><%= pluralize experiment.expeditions.size, "Expedition" %>:</strong>
+  <% experiment.expeditions.each do |exp| %>
+    <%= link_to exp.name, exp %>
+  <% end %>
+</p>
+
+<p>
+  <table>
+    <tr><th><%= pluralize experiment.principal_investigators.size, "Principal Investigator" %></th></tr>
+    <% experiment.principal_investigators.each do |pi| %>
+      <tr><td><%= link_to pi.name, pi %></td></tr>
+    <% end %>
+  </table>
+</p>
+
+<p>
+  <table>
+    <tr><th><%= pluralize experiment.developers.size, "Developer" %></th></tr>
+    <% experiment.developers.each do |dev| %>
+      <tr><td><%= link_to dev.name, dev %></td></tr>
+    <% end %>
+  </table>
+</p>
+

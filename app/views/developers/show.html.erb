@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to Developers list", developers_path %>
+
+<h2><%= @developer.name.split(",")[0] %></h2>
+
+<p><%= @developer.name %></p>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @developer.experiments.size, "Experiment" %></th></tr>
+    <% @developer.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.short_name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>
