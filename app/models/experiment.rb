@@ -9,7 +9,7 @@ class Experiment < ApplicationRecord
 
   default_scope { order(:short_name) }
   scope :complete, -> { includes(:category, :space_agency, :developers, :expeditions, :principal_investigators)}
-  scope :by_initial, ->(initial) { where("short_name LIKE ?", initial.downcase + "%") }
+  scope :by_initial, ->(initial) { where("lower(short_name) LIKE ?", initial.downcase + "%") }
 
   def self.initials
     Experiment.unscoped.all.select(:short_name).map {|e| e.short_name[0].upcase}.uniq.compact.sort
