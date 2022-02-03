@@ -18,11 +18,6 @@ ActiveRecord::Schema.define(version: 2022_02_03_123113) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categories_experiments", id: false, force: :cascade do |t|
-    t.integer "experiment_id", null: false
-    t.integer "category_id", null: false
-  end
-
   create_table "developers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -38,6 +33,11 @@ ActiveRecord::Schema.define(version: 2022_02_03_123113) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "expeditions_experiments", id: false, force: :cascade do |t|
+    t.integer "experiment_id", null: false
+    t.integer "expedition_id", null: false
   end
 
   create_table "experiments", force: :cascade do |t|
