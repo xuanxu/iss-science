@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.2"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Development env
-gem "sqlite3", "~> 1.4"
+#gem "sqlite3", "~> 1.4"
 
 # Use postgresql as the database for Production env
 gem "pg", "~> 1.1"
