@@ -1,25 +1,17 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-development:
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  database: db/development.sqlite3
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  database: db/test.sqlite3
-
-
-# pg for production
-production:
+default: &default
   adapter: postgresql
   encoding: unicode
-  url: <%= ENV['DATABASE_URL'] %>
-  port: <%= ENV['BOXEN_POSTGRESQL_PORT'] || 5432 %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
+
+development:
+  <<: *default
+  database: iss_science_development
+
+test:
+  <<: *default
+  database: iss_science_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
