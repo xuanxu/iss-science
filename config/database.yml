@@ -16,4 +16,4 @@ production:
   adapter: postgresql
   encoding: unicode
   url: <%= ENV['DATABASE_URL'] %>
-  database: iss-science-db
+
