@@ -3,20 +3,20 @@
 <h1>Principal Investigators</h1>
 
 <p>
-<%= link_to "All", principal_investigators_path %>
-<% PrincipalInvestigator.initials.each do |letter| %>
+<%= link_to "All", investigators_path %>
+<% Investigator.initials.each do |letter| %>
   <% if params[:by_initial].present? && params[:by_initial].upcase == letter %>
     <strong><%= letter %></strong>
   <% else %>
-    <%= link_to letter, principal_investigators_path(by_initial: letter) %>
+    <%= link_to letter, investigators_path(by_initial: letter) %>
   <% end %>
 <% end %>
 </p>
 
-<h3><%= pluralize @principal_investigators.size, "P.I." %>: </h3>
+<h3><%= pluralize @investigators.size, "P.I." %>: </h3>
 
 <div id="pi_list">
-  <% @principal_investigators.each do |pi| %>
+  <% @investigators.each do |pi| %>
     <div id="<%= dom_id pi %>">
       <p><%= link_to pi.name, pi %></p>
     </div>

@@ -35,6 +35,6 @@ class ExperimentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def experiment_params
-      params.require(:experiment).permit(:short_name, :full_name)
+      params.require(:experiment).permit(:name, :title)
     end
 end

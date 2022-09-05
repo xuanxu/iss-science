@@ -1,6 +1,6 @@
-<h2><%= experiment.short_name %></h2>
+<h2><%= experiment.name %></h2>
 
-<p><%= experiment.full_name %></p>
+<p><%= experiment.title %></p>
 
 <p><strong>Category:</strong> <%= link_to experiment.category.name, category_path(experiment.category)%></p>
 <p><strong>Sponsoring Space Agency:</strong> <%= link_to experiment.space_agency.name, space_agency_path(experiment.space_agency) %></p>
@@ -13,8 +13,8 @@
 
 <p>
   <table>
-    <tr><th><%= pluralize experiment.principal_investigators.size, "Principal Investigator" %></th></tr>
-    <% experiment.principal_investigators.each do |pi| %>
+    <tr><th><%= pluralize experiment.investigators.size, "Principal Investigator" %></th></tr>
+    <% experiment.investigators.each do |pi| %>
       <tr><td><%= link_to pi.name, pi %></td></tr>
     <% end %>
   </table>

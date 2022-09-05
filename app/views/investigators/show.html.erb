@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to P.I. list", investigators_path %>
+
+<h2><%= @investigator.name.split(",")[0] %></h2>
+
+<p><%= @investigator.name %></p>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @investigator.experiments.size, "Experiment" %></th></tr>
+    <% @investigator.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

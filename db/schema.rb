@@ -10,42 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_03_123113) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_101602) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "developers", force: :cascade do |t|
+    t.bigint "external_id"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "developers_experiments", id: false, force: :cascade do |t|
-    t.integer "experiment_id", null: false
-    t.integer "developer_id", null: false
+    t.bigint "experiment_id", null: false
+    t.bigint "developer_id", null: false
   end
 
   create_table "expeditions", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "expeditions_experiments", id: false, force: :cascade do |t|
-    t.integer "experiment_id", null: false
-    t.integer "expedition_id", null: false
+    t.bigint "experiment_id", null: false
+    t.bigint "expedition_id", null: false
   end
 
   create_table "experiments", force: :cascade do |t|
-    t.string "short_name", null: false
-    t.text "full_name"
-    t.text "principal_investigators_raw"
-    t.text "developers_raw"
-    t.string "expeditions_raw"
+    t.string "name", null: false
+    t.text "title"
+    t.integer "external_id"
+    t.text "pao_summary"
+    t.text "research_summary"
+    t.text "research_description"
+    t.text "research_operations"
+    t.text "applications_in_space"
+    t.text "applications_on_earth"
+    t.text "results"
+    t.text "results_summary"
+    t.text "res_ops_reqs_protos"
+    t.text "hardware_payload"
+    t.text "nanoracks"
+    t.datetime "dock_date"
+    t.datetime "undock_date"
+    t.integer "results_publications_count", default: 0
+    t.string "link_text"
+    t.string "link_url"
+    t.bigint "category_id"
+    t.bigint "subcategory_id"
+    t.bigint "space_agency_id"
+    t.bigint "organization_id"
     t.boolean "required_sample_return"
     t.integer "sample_return_times", default: 0
     t.boolean "crew_involvement"
@@ -55,29 +76,42 @@ ActiveRecord::Schema.define(version: 2022_02_03_123113) do
     t.boolean "completed_successfully"
     t.string "hardware_required"
     t.text "hardware_required_details"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "category_id"
-    t.integer "space_agency_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_experiments_on_category_id"
+    t.index ["organization_id"], name: "index_experiments_on_organization_id"
     t.index ["space_agency_id"], name: "index_experiments_on_space_agency_id"
+    t.index ["subcategory_id"], name: "index_experiments_on_subcategory_id"
   end
 
-  create_table "experiments_principal_investigators", id: false, force: :cascade do |t|
-    t.integer "experiment_id", null: false
-    t.integer "principal_investigator_id", null: false
+  create_table "experiments_investigators", id: false, force: :cascade do |t|
+    t.bigint "experiment_id", null: false
+    t.bigint "investigator_id", null: false
   end
 
-  create_table "principal_investigators", force: :cascade do |t|
+  create_table "investigators", force: :cascade do |t|
+    t.bigint "external_id"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "space_agencies", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -15,9 +15,4 @@ class ExperimentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update experiment" do
-    patch experiment_url(@experiment), params: { experiment: { short_name: "APEX-05" }}
-    assert_redirected_to experiment_url(@experiment)
-  end
-
 end

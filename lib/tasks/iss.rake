@@ -136,7 +136,7 @@ namespace :iss do
         no_category = Category.find_or_create_by(name: "No category")
         no_space_agency = SpaceAgency.find_or_create_by(name: "No space agency")
 
-        exp = Experiment.find_or_create_by(short_name: short_name) do |e|
+        exp = Experiment.find_or_create_by(name: short_name) do |e|
                                 e.full_name = full_name
                                 e.principal_investigators_raw = principal_investigators_raw
                                 e.developers_raw = developers_raw
