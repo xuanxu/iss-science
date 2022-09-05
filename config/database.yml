@@ -13,5 +13,6 @@ test:
   database: iss_science_test
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   url: <%= ENV['DATABASE_URL'] %>
