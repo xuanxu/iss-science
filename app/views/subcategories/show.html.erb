@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to Subcategories list", subcategories_path %>
+
+<h2><%= @subcategory.name %></h2>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @subcategory.experiments.size, "experiment" %> classified under <i><%= @subcategory.name %></i></th></tr>
+    <% @subcategory.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

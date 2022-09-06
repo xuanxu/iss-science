@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Organizations</h1>
+
+<div id="organizations">
+  <table>
+    <tr><th>Organization</th></tr>
+    <% @organizations.each do |organization| %>
+      <tr><td><%= link_to organization.name, organization %></td></tr>
+    <% end %>
+  </table>
+</div>

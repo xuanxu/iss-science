@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to Organizations list", organizations_path %>
+
+<h2><%= @organization.name %></h2>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @organization.experiments.size, "experiment" %> sponsored by <i><%= @organization.name %></i></th></tr>
+    <% @organization.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

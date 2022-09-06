@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :developers, only: [:index, :show]
   resources :expeditions, only: [:index, :show]
   resources :categories, only: [:index, :show]
+  resources :subcategories, only: [:index, :show]
   resources :space_agencies, only: [:index, :show]
   resources :organizations, only: [:index, :show]
 
