@@ -1,15 +1,76 @@
 <h2><%= experiment.name %></h2>
 
-<p><%= experiment.title %></p>
+<p class="experiment-title"><strong><%= experiment.title %></strong></p>
 
-<p><strong>Category:</strong> <%= link_to experiment.category.name, category_path(experiment.category)%></p>
+<p>
+  <strong>Category:</strong> <%= link_to experiment.category.name, category_path(experiment.category)%>
+  <% if experiment.subcategory.present? %>
+    <strong>Subcategory:</strong> <%= link_to experiment.subcategory.name, subcategory_path(experiment.subcategory)%>
+  <% end %>
+</p>
 <p><strong>Sponsoring Space Agency:</strong> <%= link_to experiment.space_agency.name, space_agency_path(experiment.space_agency) %></p>
+<p><strong>Supporting Organization:</strong> <%= link_to experiment.organization.name, organization_path(experiment.organization) if experiment.organization %></p>
 <p>
   <strong><%= pluralize experiment.expeditions.size, "Expedition" %>:</strong>
   <% experiment.expeditions.each do |exp| %>
     <%= link_to exp.name, exp %>
   <% end %>
 </p>
+
+<p><strong><%= experiment.docking_dates %></strong></p>
+
+<div id="pao-summary"><%= experiment.pao_summary.to_s.html_safe %></div>
+
+<% if experiment.research_summary.present? || experiment.research_description.present? %>
+<p><strong>Research</strong></p>
+<div id="research-summary"><%= experiment.research_summary.to_s.html_safe %></div>
+<br>
+<div id="research-description"><%= experiment.research_description.to_s.html_safe %></div>
+<% end %>
+
+<% if experiment.research_operations.present? %>
+<p><strong>Operations</strong></p>
+<div id="research-operations"><%= experiment.research_operations.html_safe %></div>
+<% end %>
+
+<% if experiment.applications_in_space.present? %>
+<p><strong>Applications in space</strong></p>
+<div id="research-operations"><%= experiment.applications_in_space.html_safe %></div>
+<% end %>
+
+<% if experiment.applications_on_earth.present? %>
+<p><strong>Applications on Earth</strong></p>
+<div id="research-operations"><%= experiment.applications_on_earth.html_safe %></div>
+<% end %>
+
+<% if experiment.results_summary.present? || experiment.results.present? %>
+<p><strong>Results</strong></p>
+<div id="results-summary"><%= experiment.results_summary.to_s.html_safe %></div>
+<br>
+<div id="results"><%= experiment.results.to_s.html_safe %></div>
+<% end %>
+
+<% if experiment.res_ops_reqs_protos.present? %>
+<p><strong>Res. Ops. Reqs. Protos.</strong></p>
+<div id="res-ops-reqs-protos"><%= experiment.res_ops_reqs_protos.html_safe %></div>
+<% end %>
+
+<% if experiment.hardware_payload.present? %>
+<p><strong>Hardware payload</strong></p>
+<div id="hardware_payload"><%= experiment.hardware_payload.html_safe %></div>
+<% end %>
+
+<% if experiment.nanoracks.present? %>
+<p><strong>Nanoracks</strong></p>
+<div id="nanoracks"><%= experiment.nanoracks.html_safe %></div>
+<% end %>
+
+<p id="publications_count"><strong>Publications: <%= experiment.results_publications_count %></strong></p>
+
+<% if experiment.link_url.present? %>
+<p id="web"><strong>Web:</strong> <%= link_to experiment.link_text || experiment.link_url, experiment.link_url %></p>
+<% end %>
+
 
 <p>
   <table>

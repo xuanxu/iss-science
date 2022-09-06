@@ -17,4 +17,15 @@ class Experiment < ApplicationRecord
   def self.initials
     Experiment.unscoped.all.select(:name).map {|e| e.name[0].upcase}.uniq.compact.sort
   end
+
+  def docking_dates
+    dock_on = dock_date.present? ? dock_date.strftime("%d/%m/%Y") : "unavailable"
+    undock_on = undock_date.present? ? undock_date.strftime("%d/%m/%Y") : "-"
+
+    if dock_on == "unavailable" && undock_on == "-"
+      return "No docking info available"
+    else
+      return "Docked from #{dock_on} to #{undock_on}"
+    end
+  end
 end
