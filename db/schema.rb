@@ -79,6 +79,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_101602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_experiments_on_category_id"
+    t.index ["external_id"], name: "index_experiments_on_external_id"
+    t.index ["name"], name: "index_experiments_on_name"
     t.index ["organization_id"], name: "index_experiments_on_organization_id"
     t.index ["space_agency_id"], name: "index_experiments_on_space_agency_id"
     t.index ["subcategory_id"], name: "index_experiments_on_subcategory_id"
