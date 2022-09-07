@@ -1,4 +1,6 @@
 class KeywordsController < ApplicationController
+  before_action :admin_required, except: [:index, :show]
+
   def index
     @keywords = Keyword.all
   end

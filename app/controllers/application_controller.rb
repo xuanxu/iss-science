@@ -1,3 +1,6 @@
 class ApplicationController < ActionController::Base
-  http_basic_authenticate_with name: ENV['ISS_USER'].to_s, password: ENV['ISS_PASS'].to_s
+
+  def admin_required
+    http_basic_authenticate_or_request_with name: "lolo", password: "lolo" #name: ENV['ISS_USER'].to_s, password: ENV['ISS_PASS'].to_s
+  end
 end
