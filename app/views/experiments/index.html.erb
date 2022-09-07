@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Experiments</h1>
+<h1>Experiments <% if params[:by_initial].present? %>(<%= params[:by_initial].upcase %>)<% end %></h1>
 
 <p>
 <%= link_to "All", experiments_path %>
