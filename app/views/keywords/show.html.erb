@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Back to keywords list", keywords_path %>
+
+<h2><%= @keyword.name %></h2>
+
+<p>
+  <table>
+    <tr><th><%= pluralize @keyword.experiments.size, "experiment" %> tagged with <i><%= @keyword.name %></i></th></tr>
+    <% @keyword.experiments.each do |ex| %>
+      <tr><td><%= link_to ex.name, ex %></td></tr>
+    <% end %>
+  </table>
+</p>

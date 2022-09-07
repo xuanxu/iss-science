@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :subcategories, only: [:index, :show]
   resources :space_agencies, only: [:index, :show]
   resources :organizations, only: [:index, :show]
+  resources :keywords
 
   root "experiments#index"
 end

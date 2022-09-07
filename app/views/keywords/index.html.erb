@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Keywords</h1>
+
+<div id="keywords">
+  <table>
+    <tr><th>Keyword name</th><th>Variations</th></tr>
+    <% @keywords.each do |key| %>
+      <tr>
+        <td class="keyword keyword-<%= key.id %>"><%= link_to key.name, key %></td>
+        <td><%= key.variations %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

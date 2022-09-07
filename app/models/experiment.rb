@@ -6,12 +6,15 @@ class Experiment < ApplicationRecord
   has_and_belongs_to_many :developers
   has_and_belongs_to_many :expeditions
   has_and_belongs_to_many :investigators
+  has_and_belongs_to_many :keywords
 
   validates :name, presence: true, uniqueness: true
   validates :external_id, presence: true, uniqueness: true
 
   default_scope { order(:name) }
-  scope :complete, -> { includes(:category, :subcategory, :space_agency, :organization, :developers, :expeditions, :investigators)}
+  scope :unreviewed, -> { where(reviewed: false) }
+  scope :reviewed, -> { where(reviewed: true) }
+  scope :complete, -> { includes(:category, :subcategory, :space_agency, :organization, :developers, :expeditions, :investigators, :keywords)}
   scope :by_initial, ->(initial) { where("lower(name) LIKE ?", initial.downcase + "%") }
 
   def self.initials

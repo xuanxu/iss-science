@@ -17,3 +17,38 @@
 body {
   grid-template-columns: auto 65% auto;
 }
+
+.keyword {
+  padding: 8px;
+  background-color: #dedede;
+}
+.keyword-1 {
+  background-color: #FBCA04;
+}
+.keyword-2 {
+  background-color: #E99695;
+}
+.keyword-3 {
+  background-color: #C2E0C6;
+}
+.keyword-4 {
+  background-color: #C5DEF5;
+}
+.keyword-5 {
+  background-color: #D4C5F9;
+}
+.keyword-6 {
+  background-color: #a2eeef;
+}
+.keyword-7 {
+  background-color: #F3E029;
+}
+.keyword-8 {
+  background-color: #E95663;
+}
+.keyword-9 {
+  background-color: #07C657;
+}
+.keyword-10 {
+  background-color: #CCCCCC;
+}

@@ -19,6 +19,12 @@
 
 <p><strong><%= experiment.docking_dates %></strong></p>
 
+<p>
+  <% experiment.keywords.each do |key| %>
+    <span class="keyword keyword-<%= key.id %>"><%= key.name %></span>
+  <% end %>
+</p>
+
 <div id="pao-summary"><%= experiment.pao_summary.to_s.html_safe %></div>
 
 <% if experiment.research_summary.present? || experiment.research_description.present? %>
