@@ -1,6 +1,10 @@
-<h2><%= experiment.name %></h2>
+<h2><%= revised_icon(experiment, 32) %> <%= experiment.name %></h2>
 
-<p class="experiment-title"><strong><%= experiment.title %></strong></p>
+<aside>
+  <%= render 'form', experiment: experiment %>
+</aside>
+
+<p class="experiment-title"><strong><i><%= experiment.title %></i></strong></p>
 
 <p>
   <strong>Category:</strong> <%= link_to experiment.category.name, category_path(experiment.category)%>

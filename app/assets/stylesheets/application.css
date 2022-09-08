@@ -18,6 +18,15 @@ body {
   grid-template-columns: auto 65% auto;
 }
 
+.experiment-title {
+  color: #666;
+}
+
+input.small-number {
+  width: 65px;
+}
+
+
 .keyword {
   padding: 8px;
   background-color: #dedede;

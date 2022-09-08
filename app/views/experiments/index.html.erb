@@ -18,7 +18,10 @@
 <div id="experiments">
   <% @experiments.each do |experiment| %>
     <div id="<%= dom_id experiment %>">
-      <p><%= link_to experiment.name, experiment %></p>
+      <p>
+        <%= link_to experiment.name, experiment %>
+        <%= revised_icon(experiment) %>
+      </p>
     </div>
   <% end %>
 </div>

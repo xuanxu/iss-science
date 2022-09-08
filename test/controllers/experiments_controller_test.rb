@@ -10,9 +10,9 @@ class ExperimentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show experiment" do
+  test "should not show experiment if not authorized" do
     get experiment_url(@experiment)
-    assert_response :success
+    assert_response 401
   end
 
 end

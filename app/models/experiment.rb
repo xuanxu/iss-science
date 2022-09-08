@@ -21,6 +21,10 @@ class Experiment < ApplicationRecord
     Experiment.unscoped.all.select(:name).map {|e| e.name[0].upcase}.uniq.compact.sort
   end
 
+  def revised!
+    update_attribute(:revised, true)
+  end
+
   def docking_dates
     dock_on = dock_date.present? ? dock_date.strftime("%d/%m/%Y") : "unavailable"
     undock_on = undock_date.present? ? undock_date.strftime("%d/%m/%Y") : "-"

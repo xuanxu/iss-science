@@ -1,4 +1,4 @@
-<%= form_with(model: experiment) do |form| %>
+<%= form_for(experiment) do |f| %>
   <% if experiment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(experiment.errors.count, "error") %> prohibited this experiment from being saved:</h2>
@@ -11,32 +11,75 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+  <p>
+    <strong>Features</strong>
+  </p>
+
+  <p>
+    <label>
+    <%= f.check_box :completed_successfully %>
+    Completed successfully
+    </label>
+  </p>
+
+  <p>
+    <label>
+    <%= f.check_box :crew_involvement %>
+    Crew involvement
+    </label>
+  </p>
+
+  <p>
+    <label>
+    <%= f.check_box :required_sample_return %>
+    Required sample return
+    </label>
+  </p>
+
+  <p>
+    <label>
+    <%= f.check_box :hardware_required %>
+    Hardware required
+    </label>
+  </p>
+
+  <p>
+    <label>
+    <%= f.check_box :data_in_repositories %>
+    Data in repositories
+    </label>
+  </p>
+
+  <strong>Extra details</strong>
+
+  <p>
+    <label>
+    Sample return:
+    <%= f.number_field :required_sample_return, class: "small-number", min: 0 %>
+    times
+    </label>
+    <%= f.label :crew_involvement_description, "Crew involvement description:", style: "color: #666" %>
+    <%= f.text_field :crew_involvement_description %>
+    <%= f.label :data_in_respositories_details, "Data respositories details:", style: "color: #666" %>
+    <%= f.text_field :data_in_respositories_details %>
+    <%= f.label :hardware_required_details, "Required hardware details:", style: "color: #666" %>
+    <%= f.text_field :hardware_required_details %>
+  </p>
+
+  <strong>Keywords</strong>
+
+  <p>
+    <%= f.collection_check_boxes(:keyword_ids, Keyword.all, :id, :name)  do |b|
+      b.label { b.check_box + b.text }
+    end %>
+  </p>
+
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title %>
-  </div>
-
-  <div>
-    <%= form.label :completed_successfully, style: "display: block" %>
-    <%= form.check_box :completed_successfully %>
-  </div>
-
-  <div>
-    <%= form.label :sample_return_times, style: "display: block" %>
-    <%= form.number_field :sample_return_times %>
-  </div>
-
-  <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.text_field :category_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <% if experiment.revised %>
+      <%= f.submit "Update" %>
+    <% else %>
+      <%= f.submit "Mark as revised" %>
+    <% end %>
   </div>
 <% end %>

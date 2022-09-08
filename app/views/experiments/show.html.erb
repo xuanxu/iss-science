@@ -1,11 +1,5 @@
 <p style="color: green"><%= notice %></p>
 
-<%= link_to "Back to experiments", experiments_path %>
-
 <div id="<%= dom_id @experiment %>">
   <%= render @experiment %>
-</div>
-
-<div>
-  <%= button_to "Edit this experiment", edit_experiment_path(@experiment) %>
 </div>
