@@ -5,7 +5,7 @@ require "faraday"
 namespace :iss do
   namespace :keywords do
 
-    desc "Search experiments text for keywords and tag them"
+    desc "Search unrevised experiments texts for keywords and tag them"
     task process: :environment do
       fields_to_search_in = ["pao_summary",
                              "research_summary",
@@ -30,7 +30,7 @@ namespace :iss do
         end
         sql_string = sql_string_pieces.join(" OR ")
 
-        Experiment.where(sql_string).find_in_batches do |group|
+        Experiment.unrevised.where(sql_string).find_in_batches do |group|
           group.each { |experiment| experiment.keywords << keyword unless experiment.keywords.include?(keyword)}
         end
 
