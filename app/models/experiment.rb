@@ -12,8 +12,8 @@ class Experiment < ApplicationRecord
   validates :external_id, presence: true, uniqueness: true
 
   default_scope { order(:name) }
-  scope :unreviewed, -> { where(reviewed: false) }
-  scope :reviewed, -> { where(reviewed: true) }
+  scope :unrevised, -> { where(revised: false) }
+  scope :revised, -> { where(revised: true) }
   scope :complete, -> { includes(:category, :subcategory, :space_agency, :organization, :developers, :expeditions, :investigators, :keywords)}
   scope :by_initial, ->(initial) { where("lower(name) LIKE ?", initial.downcase + "%") }
 
