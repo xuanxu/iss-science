@@ -45,10 +45,11 @@ namespace :iss do
           unless File.exist?(experiment_json_path)
             response = Faraday.get(experiment_url)
             if response.status.between?(200, 299)
+              puts "  ✅ Info for experiment #{id} downloaded!!"
               #experiment_data = JSON.parse(response.body)
               File.open(experiment_json_path,'w') {|f| f.write response.body}
             else
-              puts "!! Error retrieving info for experiment #{id}"
+              puts "  ⚠️ Error retrieving info for experiment #{id}"
             end
           end
 
@@ -56,7 +57,7 @@ namespace :iss do
 
         puts "Done! #{ids.size} json files ready in the data/experiments folder"
       else
-        puts "!! Ids file not found: #{ids_file_path}"
+        puts "  ❌ Ids file not found: #{ids_file_path}"
       end
     end
 
