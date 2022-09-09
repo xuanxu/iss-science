@@ -8,7 +8,7 @@
   <table>
     <tr><th><%= pluralize @category.experiments.size, "experiment" %> classified under <i><%= @category.name %></i></th></tr>
     <% @category.experiments.each do |ex| %>
-      <tr><td><%= link_to ex.name, ex %></td></tr>
+      <tr><td><%= link_to ex.name, ex %> <%= revised_icon(ex) %></td></tr>
     <% end %>
   </table>
 </p>
