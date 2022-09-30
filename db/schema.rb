@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_30_081213) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_30_085142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_30_081213) do
     t.boolean "revised", default: false
     t.boolean "hardware_required", default: false
     t.boolean "commercial", default: false
+    t.text "decadals"
     t.index ["category_id"], name: "index_experiments_on_category_id"
     t.index ["external_id"], name: "index_experiments_on_external_id"
     t.index ["name"], name: "index_experiments_on_name"

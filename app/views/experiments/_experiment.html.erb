@@ -65,6 +65,11 @@
 <div id="res-ops-reqs-protos"><%= experiment.res_ops_reqs_protos.html_safe %></div>
 <% end %>
 
+<% if experiment.decadals.present? %>
+<p><strong>Decadals</strong></p>
+<div id="decadals"><%= experiment.decadals.html_safe %></div>
+<% end %>
+
 <% if experiment.hardware_payload.present? %>
 <p><strong>Hardware payload</strong></p>
 <div id="hardware_payload"><%= experiment.hardware_payload.html_safe %></div>
@@ -80,7 +85,6 @@
 <% if experiment.link_url.present? %>
 <p id="web"><strong>Web:</strong> <%= link_to experiment.link_text || experiment.link_url, experiment.link_url %></p>
 <% end %>
-
 
 <p>
   <table>
