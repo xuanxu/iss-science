@@ -4,10 +4,12 @@
 
 <h2><%= @subcategory.name %></h2>
 
+<%= select_tag :by_space_agency, options_from_collection_for_select(SpaceAgency.all, "id", "name", params[:by_space_agency].presence), include_blank: "All Space Agencies", onchange: "top.location.href='?by_space_agency=' + this.options[this.selectedIndex].value;" %>
+
 <p>
   <table>
-    <tr><th><%= pluralize @subcategory.experiments.size, "experiment" %> classified under <i><%= @subcategory.name %></i></th></tr>
-    <% @subcategory.experiments.each do |ex| %>
+    <tr><th><%= pluralize @experiments.size, "experiment" %> classified under <i><%= @subcategory.name %></i></th></tr>
+    <% @experiments.each do |ex| %>
       <tr><td><%= link_to ex.name, ex %> <%= revised_icon(ex) %></td></tr>
     <% end %>
   </table>
