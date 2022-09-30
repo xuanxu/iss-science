@@ -33,7 +33,7 @@ class ExperimentsController < ApplicationController
                                          :required_sample_return,
                                          :hardware_required,
                                          :data_in_repositories,
-                                         :required_sample_return,
+                                         :sample_return_times,
                                          :crew_involvement_description,
                                          :data_in_respositories_details,
                                          :hardware_required_details,
