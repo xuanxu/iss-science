@@ -28,6 +28,7 @@ class ExperimentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def experiment_params
       params.require(:experiment).permit(:completed_successfully,
+                                         :commercial,
                                          :crew_involvement,
                                          :required_sample_return,
                                          :hardware_required,
