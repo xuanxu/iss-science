@@ -77,9 +77,12 @@ namespace :iss do
           next
         end
 
-        if Experiment.exists?(external_id: id)
-          puts "  ⏭ Experiment #{id} already exists in the DB"
-          next
+        experiment = Experiment.find_by(external_id: id)
+        if experiment.nil?
+          experiment = Experiment.new(external_id: id)
+          puts "  ✨ Adding experiment #{id}!"
+        else
+          puts "  📝 Updating experiment #{id}!"
         end
 
         category_name = experiment_data.dig("Investigation", "CategoryName") || "Uncategorized"
@@ -92,7 +95,6 @@ namespace :iss do
         space_agency = SpaceAgency.find_or_create_by(name: space_agency_name) if space_agency_name
         organization = Organization.find_or_create_by(name: organization_name) if organization_name
 
-        experiment = Experiment.new(external_id: id)
         experiment.name = experiment_data.dig("Investigation", "Name")
         experiment.title = experiment_data.dig("Investigation", "Title")
         experiment.pao_summary = experiment_data.dig("Investigation", "PAOSummary")
@@ -112,12 +114,21 @@ namespace :iss do
         experiment.link_text = experiment_data.dig("Websites", 0, "Name")
         experiment.link_url = experiment_data.dig("Websites", 0, "Address")
 
+        decadals_list = experiment_data.dig("Decadals")
+        decadals = []
+        if decadals_list.size > 0
+          decadals_list.each do |dec|
+            decadals << "<p>[Reference: #{dec["SubCategoryName"]}] #{dec["Name"]}</p>"
+          end
+          experiment.decadals = decadals.join("\n")
+        end
+
         experiment.category = Category.find_or_create_by(name: category_name) if category_name
         experiment.subcategory = Subcategory.find_or_create_by(name: subcategory_name) if subcategory_name
         experiment.space_agency = SpaceAgency.find_or_create_by(name: space_agency_name) if space_agency_name
         experiment.organization = Organization.find_or_create_by(name: organization_name) if organization_name
 
-        experiment.save!
+        experiment.save! if experiment.changed?
 
         expeditions = experiment_data.dig("Investigation", "Increments").to_s.gsub("\n", "").split(",").map(&:strip)
         expeditions.each do |expedition_name|
@@ -140,8 +151,6 @@ namespace :iss do
           end
         end
         experiment.investigators = Investigator.where(external_id: investigators.map{|i| i["ID"]}) unless investigators.empty?
-
-        puts "  ✅ Experiment #{id} loaded!!"
       end
       puts "🏁 Done!"
     end
