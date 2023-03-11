@@ -6,7 +6,6 @@
 
 <%= select_tag :by_subcategory, options_from_collection_for_select(Subcategory.all, "id", "name", params[:by_subcategory].presence), include_blank: "All Subcategories", onchange: "top.location.href='?by_subcategory=' + this.options[this.selectedIndex].value;" %>
 
-
 <p>
   <table>
     <tr><th><%= pluralize @experiments.size, "experiment" %> sponsored by <i><%= @space_agency.name %></i></th></tr>
