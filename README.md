@@ -1,3 +1,3 @@
 # ISS Science
 
-Data manager for ISS experiments
+Data manager for the experiments onboard the International Space Station 
